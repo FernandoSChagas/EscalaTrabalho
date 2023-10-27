@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escala 12x36 - Trabalhando ou de Folga?</title>
+    <style>
+        body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f9fc;
+    color: #333;
+    text-align: center;
+    padding-top: 100px;
+}
+
+p {
+    margin: 20px 0;
+}
+
+input[type="date"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #528b23;
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#result {
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+    </style>
+</head>
+<body>
+
+<p>Escolha a data:</p>
+<input type="date" id="dateInput" min="2023-10-27" max="2024-12-31">
+<button onclick="checkDay()">Verificar</button>
+
+<p id="result"></p>
+
+<script>
+    function checkDay() {
+        // Data de referência: 27 de outubro de 2023 (de folga)
+        const startDate = new Date('2023-10-27');
+        const inputDate = new Date(document.getElementById('dateInput').value);
+        
+        const diffTime = Math.abs(inputDate - startDate);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        if (diffDays % 2 === 0) {
+            document.getElementById('result').textContent = "Você está de folga neste dia.";
+        } else {
+            document.getElementById('result').textContent = "Você está trabalhando neste dia.";
+        }
+    }
+</script>
+
+</body>
+</html>
